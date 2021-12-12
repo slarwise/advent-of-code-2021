@@ -1,6 +1,6 @@
--include_lib("eunit/include/eunit.hrl").
-
 -module(day1).
+
+-include_lib("eunit/include/eunit.hrl").
 
 -export([run/1]).
 
