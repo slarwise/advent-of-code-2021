@@ -14,6 +14,12 @@ rebar3 escriptize
 _build/default/bin/aoc <day> <part>
 ```
 
+To get help, do
+
+```sh
+_build/default/bin/aoc -h
+```
+
 ## Test
 
 ```sh
