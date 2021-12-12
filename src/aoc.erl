@@ -121,14 +121,11 @@ parse_args([DayStr, PartStr]) ->
 -spec usage_message() -> string().
 usage_message() ->
     string:join([
-                 "usage: aoc [-h] day part",
+                 "usage: aoc day part",
                  "",
                  "Positional arguments:",
                  " day          The day to run, an integer between 1 and 24",
-                 " part         The part of the day to run, an integer between 1 and 2",
-                 "",
-                 "options:",
-                 "-h, --help    show this help message and exit"
+                 " part         The part of the day to run, an integer between 1 and 2"
                 ],
                 "\n"
                ).
