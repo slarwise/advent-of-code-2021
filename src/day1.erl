@@ -38,6 +38,7 @@ count_increases_test() ->
              ],
     ?assertEqual(7, count_increases(Report)).
 
+-spec read_input() -> Input :: [integer()].
 read_input() ->
     Filename = "input/day1",
     {ok, Binary} = file:read_file(Filename),
