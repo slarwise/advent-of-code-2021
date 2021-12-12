@@ -18,8 +18,7 @@ main(Args) ->
             io:format("~s~n", [usage_message()]),
             erlang:halt(0);
         {stop, Error} ->
-            ErrorMsg = create_error_message(Error),
-            io:format("~s~n", [ErrorMsg]),
+            io:format("~s~n", [error_message(Error)]),
             erlang:halt(1)
     end.
 
@@ -42,16 +41,16 @@ usage_message() ->
         "\n"
     ).
 
--spec create_error_message(Error :: atom()) -> string().
-create_error_message(incorrect_length) ->
+-spec error_message(Error :: atom()) -> string().
+error_message(incorrect_length) ->
     "aoc: error: exactly two arguments must be given";
-create_error_message(args_must_be_integers) ->
+error_message(args_must_be_integers) ->
     "aoc: error: day and part must both be integers";
-create_error_message(day_out_of_range) ->
+error_message(day_out_of_range) ->
     "aoc: error: day must be in {1,..., 24}";
-create_error_message(part_out_of_range) ->
+error_message(part_out_of_range) ->
     "aoc: error: part must be either 1 or 2";
-create_error_message(not_implemented) ->
+error_message(not_implemented) ->
     "aoc: error: the given day and part is not implemented".
 
 -spec run(argparse:config()) -> any().
