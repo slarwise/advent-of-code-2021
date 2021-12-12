@@ -4,7 +4,7 @@
 
 -export([run/1]).
 
--spec run(Part :: 1..2) -> ok.
+-spec run(Part :: 1) -> ok.
 run(1) ->
     Report = read_input(),
     Increases = count_increases(Report),

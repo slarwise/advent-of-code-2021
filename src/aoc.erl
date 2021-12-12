@@ -41,7 +41,7 @@ usage_message() ->
         "\n"
     ).
 
--spec error_message(Error :: atom()) -> string().
+-spec error_message(Error :: argparse:error()) -> string().
 error_message(incorrect_length) ->
     "aoc: error: exactly two arguments must be given";
 error_message(args_must_be_integers) ->
@@ -53,5 +53,5 @@ error_message(part_out_of_range) ->
 error_message(not_implemented) ->
     "aoc: error: the given day and part is not implemented".
 
--spec run(argparse:config()) -> any().
+-spec run(argparse:config()) -> ok.
 run(#{day := 1, part := Part}) -> day1:run(Part).

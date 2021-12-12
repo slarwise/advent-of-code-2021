@@ -6,14 +6,24 @@
 
 -type cli_arg() :: string().
 -type cli_args() :: [cli_arg()].
+
 -type day() :: 1..24.
 -type part() :: 1..2.
 -type config() :: #{day := day(), part := part()}.
 -type relaxed_config() :: #{day := integer(), part := integer()}.
--type reason() :: atom().
--type result(Result) :: {continue, Result} | {stop, reason()}.
 
--export_type([cli_args/0, config/0]).
+-type error() ::
+    incorrect_length
+    | args_must_be_integers
+    | day_out_of_range
+    | part_out_of_range
+    | not_implemented.
+-type reason() :: error() | help.
+-type stop() :: {stop, reason()}.
+-type continue(Result) :: {continue, Result}.
+-type result(Result) :: continue(Result) | stop().
+
+-export_type([cli_args/0, config/0, error/0]).
 
 -spec parse(cli_args()) -> result(config()).
 parse(Args) ->
@@ -110,7 +120,7 @@ string_is_integer_false_decimal_test() ->
 string_is_integer_false_nan_test() ->
     ?assertEqual(false, string_is_integer("not_a_number")).
 
--spec extract_day_and_part(cli_args()) -> result(relaxed_config()).
+-spec extract_day_and_part(cli_args()) -> continue(relaxed_config()).
 extract_day_and_part(Args) ->
     [Day, Part | []] = lists:map(
         fun(Arg) ->
