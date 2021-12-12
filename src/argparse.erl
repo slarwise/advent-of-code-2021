@@ -170,7 +170,10 @@ check_part_range_in_range_test() ->
 
 -spec check_implemented(config()) -> result(config()).
 check_implemented(Config) ->
-    Implemented = sets:from_list([#{day => 1, part => 1}]),
+    Implemented = sets:from_list([
+        #{day => 1, part => 1},
+        #{day => 1, part => 2}
+    ]),
     case sets:is_element(Config, Implemented) of
         true -> {continue, Config};
         false -> {stop, not_implemented}
