@@ -13,3 +13,9 @@ rebar3 escriptize
 ```sh
 _build/default/bin/aoc <day> <part>
 ```
+
+## Test
+
+```sh
+rebar3 eunit
+```
