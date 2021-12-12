@@ -11,5 +11,5 @@ rebar3 escriptize
 ## Run
 
 ```sh
-_build/default/bin/aoc
+_build/default/bin/aoc <day> <part>
 ```
