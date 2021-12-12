@@ -17,29 +17,29 @@
 -spec parse(cli_args()) -> result(config()).
 parse(Args) ->
     ParseFuns = [
-                 fun is_help/1,
-                 fun length_is_two/1,
-                 fun all_args_are_integers/1,
+        fun is_help/1,
+        fun length_is_two/1,
+        fun all_args_are_integers/1,
 
-                 fun extract_day_and_part/1,
+        fun extract_day_and_part/1,
 
-                 fun check_day_range/1,
-                 fun check_part_range/1,
-                 fun check_implemented/1
-                ],
+        fun check_day_range/1,
+        fun check_part_range/1,
+        fun check_implemented/1
+    ],
 
     catch lists:foldl(
-            fun(Fun, {continue, Result}) ->
-                    case Fun(Result) of
-                        {continue, _NewResult} = NewAcc ->
-                            NewAcc;
-                        {stop, _Reason} = Stop ->
-                            throw(Stop)
-                    end
-            end,
-            {continue, Args},
-            ParseFuns
-           ).
+        fun(Fun, {continue, Result}) ->
+            case Fun(Result) of
+                {continue, _NewResult} = NewAcc ->
+                    NewAcc;
+                {stop, _Reason} = Stop ->
+                    throw(Stop)
+            end
+        end,
+        {continue, Args},
+        ParseFuns
+    ).
 
 parse_help_test() ->
     ?assertEqual({stop, help}, parse(["-h"])).
@@ -52,10 +52,12 @@ parse_run_test() ->
 
 -spec is_help(cli_args()) -> result(cli_args()).
 is_help(Args) ->
-    case lists:any(
-           fun(HelpOption) -> lists:member(HelpOption, Args) end,
-           ["-h", "--help"]
-          ) of
+    case
+        lists:any(
+            fun(HelpOption) -> lists:member(HelpOption, Args) end,
+            ["-h", "--help"]
+        )
+    of
         true -> {stop, help};
         false -> {continue, Args}
     end.
@@ -71,7 +73,7 @@ is_help_false_continue_help_test() ->
 
 -spec length_is_two(cli_args()) -> result(cli_args()).
 length_is_two(Args) when length(Args) == 2 -> {continue, Args};
-length_is_two(_Args)-> {stop, incorrect_length}.
+length_is_two(_Args) -> {stop, incorrect_length}.
 
 length_is_two_zero_args_test() ->
     ?assertEqual({stop, incorrect_length}, length_is_two([])).
@@ -110,12 +112,12 @@ string_is_integer_false_nan_test() ->
 -spec extract_day_and_part(cli_args()) -> result(config()).
 extract_day_and_part(Args) ->
     [Day, Part | []] = lists:map(
-                        fun(Arg) ->
-                                {Int, _Rest} = string:to_integer(Arg),
-                                Int
-                        end,
-                        Args
-                       ),
+        fun(Arg) ->
+            {Int, _Rest} = string:to_integer(Arg),
+            Int
+        end,
+        Args
+    ),
     {continue, #{day => Day, part => Part}}.
 
 extract_day_and_part_test() ->

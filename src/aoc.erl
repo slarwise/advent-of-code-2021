@@ -28,18 +28,19 @@ main(Args) ->
 %%====================================================================
 -spec usage_message() -> string().
 usage_message() ->
-    string:join([
-                 "usage: aoc [-h] <day> <part>",
-                 "",
-                 "Positional arguments:",
-                 " day          the day to run, an integer between 1 and 24",
-                 " part         the part of the day to run, either 1 or 2",
-                 "",
-                 "options:",
-                 "-h, --help    show this help message and exit"
-                ],
-                "\n"
-               ).
+    string:join(
+        [
+            "usage: aoc [-h] <day> <part>",
+            "",
+            "Positional arguments:",
+            " day          the day to run, an integer between 1 and 24",
+            " part         the part of the day to run, either 1 or 2",
+            "",
+            "options:",
+            "-h, --help    show this help message and exit"
+        ],
+        "\n"
+    ).
 
 -spec create_error_message(Error :: atom()) -> string().
 create_error_message(incorrect_length) ->

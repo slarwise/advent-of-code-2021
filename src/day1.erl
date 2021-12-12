@@ -12,30 +12,31 @@ run(1) ->
 
 count_increases(Report) ->
     {Increases, _LastValue} =
-    lists:foldl(fun(Current, {Increases, Previous}) ->
-                        case Current > Previous of
-                            true -> {Increases + 1, Current};
-                            false -> {Increases, Current}
-                        end
-                end,
-                {0, infinity},
-                Report
-               ),
+        lists:foldl(
+            fun(Current, {Increases, Previous}) ->
+                case Current > Previous of
+                    true -> {Increases + 1, Current};
+                    false -> {Increases, Current}
+                end
+            end,
+            {0, infinity},
+            Report
+        ),
     Increases.
 
 count_increases_test() ->
     Report = [
-              199,
-              200,
-              208,
-              210,
-              200,
-              207,
-              240,
-              269,
-              260,
-              263
-             ],
+        199,
+        200,
+        208,
+        210,
+        200,
+        207,
+        240,
+        269,
+        260,
+        263
+    ],
     ?assertEqual(7, count_increases(Report)).
 
 -spec read_input() -> Input :: [integer()].
