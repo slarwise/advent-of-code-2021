@@ -101,6 +101,7 @@ all_args_are_integers({continue, Args}) ->
         true -> {continue, Args};
         false -> {stop, args_must_be_integers}
     end.
+
 all_args_are_integers_true_test() ->
     ?assertEqual({continue, Args = ["1", "2"]},
                  all_args_are_integers({continue, Args})).
