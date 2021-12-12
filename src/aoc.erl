@@ -47,7 +47,7 @@ create_error_message(incorrect_length) ->
 create_error_message(args_must_be_integers) ->
     "aoc: error: day and part must both be integers";
 create_error_message(day_out_of_range) ->
-    "aoc: error: day must be in {1, ..., 24}";
+    "aoc: error: day must be in {1,..., 24}";
 create_error_message(part_out_of_range) ->
     "aoc: error: part must be either 1 or 2";
 create_error_message(not_implemented) ->
