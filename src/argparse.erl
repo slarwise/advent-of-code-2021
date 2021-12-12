@@ -9,6 +9,7 @@
 -type day() :: 1..24.
 -type part() :: 1..2.
 -type config() :: #{day := day(), part := part()}.
+-type relaxed_config() :: #{day := integer(), part := integer()}.
 -type reason() :: atom().
 -type result(Result) :: {continue, Result} | {stop, reason()}.
 
@@ -109,7 +110,7 @@ string_is_integer_false_decimal_test() ->
 string_is_integer_false_nan_test() ->
     ?assertEqual(false, string_is_integer("not_a_number")).
 
--spec extract_day_and_part(cli_args()) -> result(config()).
+-spec extract_day_and_part(cli_args()) -> result(relaxed_config()).
 extract_day_and_part(Args) ->
     [Day, Part | []] = lists:map(
         fun(Arg) ->
@@ -125,7 +126,7 @@ extract_day_and_part_test() ->
     Config = #{day => 1, part => 2},
     ?assertEqual({continue, Config}, extract_day_and_part(Args)).
 
--spec check_day_range(config()) -> result(config()).
+-spec check_day_range(relaxed_config()) -> result(relaxed_config()).
 check_day_range(Config = #{day := Day}) when Day > 0, Day < 25 ->
     {continue, Config};
 check_day_range(_Config) ->
@@ -141,7 +142,7 @@ check_day_range_in_range_test() ->
     Config = #{day => 1, part => 1},
     ?assertEqual({continue, Config}, check_day_range(Config)).
 
--spec check_part_range(config()) -> result(config()).
+-spec check_part_range(relaxed_config()) -> result(relaxed_config()).
 check_part_range(Config = #{part := Part}) when Part > 0, Part < 3 ->
     {continue, Config};
 check_part_range(_Config) ->
