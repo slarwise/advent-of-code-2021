@@ -58,4 +58,5 @@ error_message(not_implemented) ->
 
 -spec run(argparse:config()) -> ok.
 run(#{day := 1, part := Part}) -> day1:run(Part);
-run(#{day := 2, part := Part}) -> day2:run(Part).
+run(#{day := 2, part := Part}) -> day2:run(Part);
+run(#{day := 3, part := Part}) -> day3:run(Part).

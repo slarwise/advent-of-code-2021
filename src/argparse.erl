@@ -174,7 +174,10 @@ check_implemented(Config) ->
         #{day => 1, part => 1},
         #{day => 1, part => 2},
         #{day => 2, part => 1},
-        #{day => 2, part => 2}
+        #{day => 2, part => 2},
+        #{day => 3, part => 1}#{
+            day => 3, part => 2
+        }
     ]),
     case sets:is_element(Config, Implemented) of
         true -> {continue, Config};
