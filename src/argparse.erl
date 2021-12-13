@@ -172,7 +172,9 @@ check_part_range_in_range_test() ->
 check_implemented(Config) ->
     Implemented = sets:from_list([
         #{day => 1, part => 1},
-        #{day => 1, part => 2}
+        #{day => 1, part => 2},
+        #{day => 2, part => 1},
+        #{day => 2, part => 2}
     ]),
     case sets:is_element(Config, Implemented) of
         true -> {continue, Config};

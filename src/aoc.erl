@@ -57,4 +57,5 @@ error_message(not_implemented) ->
     "aoc: error: the given day and part is not implemented".
 
 -spec run(argparse:config()) -> ok.
-run(#{day := 1, part := Part}) -> day1:run(Part).
+run(#{day := 1, part := Part}) -> day1:run(Part);
+run(#{day := 2, part := Part}) -> day2:run(Part).
