@@ -1,5 +1,8 @@
 -module(aoc).
 
+% Callbacks for day* modules
+-callback run(argparse:part()) -> ok.
+
 %% API exports
 -export([main/1]).
 

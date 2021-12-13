@@ -1,5 +1,7 @@
 -module(day1).
 
+-behaviour(aoc).
+
 -include_lib("eunit/include/eunit.hrl").
 
 -type report() :: [integer(), ...].
