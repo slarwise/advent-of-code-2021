@@ -2,6 +2,8 @@
 
 -include_lib("eunit/include/eunit.hrl").
 
+-type report() :: [integer(), ...].
+
 -export([run/1]).
 
 -spec run(Part :: 1..2) -> ok.
@@ -34,22 +36,14 @@ count_increases(Report, WindowSize) ->
     Increases.
 
 count_increases_part1_test() ->
-    Report = [
-        199,
-        200,
-        208,
-        210,
-        200,
-        207,
-        240,
-        269,
-        260,
-        263
-    ],
-    ?assertEqual(7, count_increases(Report, _WindowSize = 1)).
+    ?assertEqual(7, count_increases(example_report(), _WindowSize = 1)).
 
 count_increases_part2_test() ->
-    Report = [
+    ?assertEqual(5, count_increases(example_report(), _WindowSize = 3)).
+
+-spec example_report() -> report().
+example_report() ->
+    [
         199,
         200,
         208,
@@ -60,10 +54,9 @@ count_increases_part2_test() ->
         269,
         260,
         263
-    ],
-    ?assertEqual(5, count_increases(Report, _WindowSize = 3)).
+    ].
 
--spec read_input() -> Input :: [integer()].
+-spec read_input() -> Input :: report().
 read_input() ->
     {ok, Binary} = file:read_file("input/day1"),
     StringList = string:lexemes(binary_to_list(Binary), "\n"),
