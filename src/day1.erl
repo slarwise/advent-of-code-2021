@@ -28,7 +28,7 @@ count_increases(Report, WindowSize) ->
                     false -> {Increases, CurrentWindow}
                 end
             end,
-            {0, FirstWindow},
+            {_InitialIncreases = 0, FirstWindow},
             lists:nthtail(WindowSize, Report)
         ),
     Increases.
