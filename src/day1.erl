@@ -16,15 +16,12 @@ run(Part) ->
     io:format("The number of increases is ~p~n", [Increases]).
 
 count_increases(Report, WindowSize) ->
-    % Let the last element be the oldest measurement
-    FirstWindow = lists:reverse(
-        lists:sublist(Report, WindowSize)
-    ),
+    FirstWindow = lists:sublist(Report, WindowSize),
     {Increases, _LastWindow} =
         lists:foldl(
             fun(Current, {Increases, Window}) ->
                 Sum = lists:sum(Window),
-                NewWindow = [Current | lists:droplast(Window)],
+                NewWindow = tl(Window) ++ [Current],
                 NewSum = lists:sum(NewWindow),
                 case NewSum > Sum of
                     true -> {Increases + 1, NewWindow};
