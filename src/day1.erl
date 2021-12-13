@@ -6,7 +6,7 @@
 
 -export([run/1]).
 
--spec run(Part :: 1..2) -> ok.
+-spec run(argparse:part()) -> ok.
 run(Part) ->
     Report = read_input(),
     WindowSize =

@@ -23,7 +23,7 @@
 -type continue(Result) :: {continue, Result}.
 -type result(Result) :: continue(Result) | stop().
 
--export_type([cli_args/0, config/0, error/0]).
+-export_type([cli_args/0, config/0, error/0, part/0]).
 
 -spec parse(cli_args()) -> result(config()).
 parse(Args) ->
