@@ -19,13 +19,13 @@ count_increases(Report, WindowSize) ->
     FirstWindow = lists:sublist(Report, WindowSize),
     {Increases, _LastWindow} =
         lists:foldl(
-            fun(Current, {Increases, Window}) ->
-                Sum = lists:sum(Window),
-                NewWindow = tl(Window) ++ [Current],
-                NewSum = lists:sum(NewWindow),
-                case NewSum > Sum of
-                    true -> {Increases + 1, NewWindow};
-                    false -> {Increases, NewWindow}
+            fun(CurrentMeasurement, {Increases, PreviousWindow}) ->
+                PreviousSum = lists:sum(PreviousWindow),
+                CurrentWindow = tl(PreviousWindow) ++ [CurrentMeasurement],
+                CurrentSum = lists:sum(CurrentWindow),
+                case CurrentSum > PreviousSum of
+                    true -> {Increases + 1, CurrentWindow};
+                    false -> {Increases, CurrentWindow}
                 end
             end,
             {0, FirstWindow},
