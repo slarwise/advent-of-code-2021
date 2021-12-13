@@ -17,6 +17,9 @@ run(Part) ->
     Increases = count_increases(Report, WindowSize),
     io:format("The number of increases is ~p~n", [Increases]).
 
+-spec count_increases(report(), WindowSize) -> Increases when
+    WindowSize :: pos_integer(),
+    Increases :: non_neg_integer().
 count_increases(Report, WindowSize) ->
     FirstWindow = lists:sublist(Report, WindowSize),
     {Increases, _LastWindow} =
